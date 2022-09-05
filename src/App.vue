@@ -72,7 +72,7 @@ const searchCity = (inputCity) => {
       // handle success
       console.log(response)
 
-      weatherData.value.city = response.data.name
+      weatherDataCauseError.value.city = response.data.name
       weatherData.value.weatherSummary = response.data.weather[0].main
       weatherData.value.weatherDescription = response.data.weather[0].description
       weatherData.value.currentTemperature = response.data.main.temp
