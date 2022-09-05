@@ -36,7 +36,6 @@ jobs:
       - name: Run project tests
         run: npm run test:unit
 
-  # This workflow contains a single job called "build"
   compile:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -54,3 +53,25 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run project tests
         run: npm run build
+  
+  docker-build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      
+      -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+      
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          # push: true
+          tags: user/app:latest
